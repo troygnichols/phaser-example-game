@@ -59,7 +59,7 @@ function create() {
   stars = game.add.group();
   stars.enableBody = true;
 
-  for (var i=0; i < 12; i++) {
+  for (var i=0; i < 1; i++) {
     var star = stars.create(i*70, 0, 'star');
     star.body.gravity.y = 100;
     star.body.bounce.y = 0.7 + Math.random() * 0.2;
@@ -113,6 +113,11 @@ function collectStar(player, star) {
 
   score += 10;
   scoreText.text = 'Score: ' + score;
+
+  if (stars.countLiving() === 0) {
+    document.body.innerHTML =
+      '<center style="color: #fff"><h1>YOU WON</h1><p>good job stars are all gone now</p></center>';
+  }
 }
 
 function decelerate(player, rate) {
